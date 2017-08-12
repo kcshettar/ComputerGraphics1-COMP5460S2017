@@ -1,0 +1,90 @@
+<html>
+	<head>
+		<title>Question 1</title>
+	</head>
+
+	<body style="background-color:#DCDCDC;">
+	</body>
+
+<script src="js/Three58.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="js/THREEx.KeyboardState.js"></script>
+
+<!-- Constructive Solid Geometry library -->
+<script src="js/ThreeCSG.js"></script>
+
+<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+<script>
+
+// standard global variables
+var container, scene, camera, renderer, controls, stats;
+var keyboard = new THREEx.KeyboardState();
+var clock = new THREE.Clock();
+// custom global variables
+var cube;
+
+init();
+animate();
+
+// FUNCTIONS 		
+function init() 
+{
+	// SCENE
+	scene = new THREE.Scene();
+	// CAMERA
+	var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
+	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
+	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
+	scene.add(camera);
+	//sets the first view of the cube
+	camera.position.set(0,150,400);	
+	// RENDERER
+	if ( Detector.webgl )
+		renderer = new THREE.WebGLRenderer( {antialias:true} );
+	else
+		renderer = new THREE.CanvasRenderer(); 
+		//making the object occupy full-screen
+		renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+		container = document.getElementById( 'ThreeJS' );
+		container.appendChild( renderer.domElement );
+		
+	// CONTROLS
+	controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+	var materialNormal = new THREE.MeshNormalMaterial();
+	
+	var cubeGeometry = new THREE.CubeGeometry( 100, 100, 100, 1, 1, 1 );
+	var cubeMesh = new THREE.Mesh( cubeGeometry );
+	var cubeBSP = new ThreeBSP( cubeMesh );
+		
+	var sphereGeometry = new THREE.SphereGeometry( 60, 32, 32 );
+	var sphereMesh = new THREE.Mesh( sphereGeometry );
+	var sphereBSP = new ThreeBSP( sphereMesh );
+	var newBSP = sphereBSP.union( cubeBSP );
+	var newMesh = newBSP.toMesh( materialNormal );
+	newMesh.position.set(70, 60, -120);
+	scene.add( newMesh );
+}
+
+function animate() 
+{
+    requestAnimationFrame( animate );
+	render();		
+	update();
+}
+
+function update()
+{
+	controls.update();
+	stats.update();
+}
+
+function render() 
+{
+	renderer.render( scene, camera );
+}
+
+</script>
+
+</html>

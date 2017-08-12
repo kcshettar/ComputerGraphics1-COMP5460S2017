@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+    <head><title>Question 2</title>
+        <style>
+            header,
+            footer {
+                padding: 1em;
+                color: white;
+                background-color: black;
+                clear: left;
+                text-align: center;
+            }
+            
+            .clearfix:after {
+                visibility: hidden;
+                display: block;
+                font-size: 0;
+                content: " ";
+                clear: both;
+                height: 0;
+            }
+            
+            .clearfix {
+                display: inline-block;
+            }
+            /* start commented backslash hack \*/
+            
+            * html .clearfix {
+                height: 1%;
+            }
+            
+            .clearfix {
+                display: block;
+            }
+            
+            .fLeft {
+                float: left;
+            }
+            
+            .fRight {
+                float: right;
+            }
+        </style>
+    </head>
+
+    <body BGCOLOR="DCDCDC">
+        <div class="container clearfix">
+            <header>
+                <h1>Connecting lines from point 'i' to point '(i+1)' and so on upto '(i+n)'  (3D)</h1>
+            </header
+        </div>
+    </body>
+
+<script src=http://mrdoob.github.io/three.js/build/three.min.js></script>
+<script src="js/TrackballControls.js"></script>
+<script>
+    var renderer, scene, camera, controls;
+
+    init();
+    animate();
+
+    function init() {
+        var geometry, line;
+        
+        renderer = new THREE.WebGLRenderer({
+            alpha: 1,
+            antialias: true,
+        });
+        renderer.setSize(1250, 500);
+        document.body.appendChild(renderer.domElement);
+        scene = new THREE.Scene();
+
+        /*Constructor
+        PerspectiveCamera( fov, aspect, near, far )
+        fov — Camera frustum vertical field of view.
+        aspect — Camera frustum aspect ratio.
+        near — Camera frustum near plane.
+        far — Camera frustum far plane.
+
+        Together these define the camera's viewing frustum*/
+
+        camera = new THREE.PerspectiveCamera(45, 1200/400, 1, 1000);
+        camera.position.set(300, 300, 300);
+        controls = new THREE.TrackballControls(camera, renderer.domElement);
+
+        /*05 segment line [i to i+n] where n is number of lines
+        To draw more number of lines, increase the limit in for loop - tested and working*/
+        var points = [];
+
+        for (var i = 0; i < 6; i++) {
+            points.push([Math.random() * 600 - 300, Math.random() * 100, Math.random() * 200 - 100]);
+        }
+
+        geometry = drawLines(points);
+        line = new THREE.Line(geometry);
+        scene.add(line);
+    }
+
+    function drawLines(vertices) {
+        var geometry = new THREE.Geometry();
+        geometry.vertices = vertices.map(convert);
+        return geometry;
+    }
+
+    function convert(vertex) {
+        return new THREE.Vector3(vertex[0], vertex[1], vertex[2]);
+    }
+
+    function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+    }
+
+</script>
+
+<html>
+

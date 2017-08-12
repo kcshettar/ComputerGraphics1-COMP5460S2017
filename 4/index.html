@@ -1,0 +1,242 @@
+<html>
+
+<head>
+    <title>PROJECTIONS - HW4</title>
+    <style>
+        <!--Comment: For the design 
+        -->
+        div.container {
+            width: 100%;
+            border: 1px solid gray;
+        }
+
+        header, footer {
+            padding: 1em;
+            color: white;
+            background-color: black;
+            clear: left;
+            text-align: center;
+        }
+
+        .link
+        {
+        color:white;
+        text-decoration: none; 
+        background-color: none;
+        }
+
+        naviagate {
+            float: left;
+            max-width: 160px;
+            margin: 0;
+            padding: 1em;
+        }
+
+        naviagate ul {
+            list-style-type: none;
+            padding: 0;
+        }
+                    
+        naviagate ul a {
+            text-decoration: none;
+        }
+
+        article {
+            margin-left: 500px;
+            overflow: hidden;
+        }
+
+        <!--Comment: To change the color of the e-Mail link 
+        -->
+        a:link {
+            color: green;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: red;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: yellow;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+
+        .clearfix:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+
+        .clearfix {
+            display: inline-block;
+        }
+        /* start commented backslash hack \*/
+
+        * html .clearfix {
+            height: 1%;
+        }
+
+        .clearfix {
+            display: block;
+        }
+
+        .fLeft {
+            float: left;
+        }
+
+        .fRight {
+            float: right;
+        }
+
+        /*
+        body {
+        font-family: Menlo, Consolas, monospace;
+        color: #444;
+        }
+        */
+        body {font-family: "Lato", sans-serif;}
+
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
+</head>
+
+<body BGCOLOR="DCDCDC">
+    <div class="container clearfix">
+
+        <header>
+            <h1>Welcome to PLANAR GEOMETRIC PROJECTIONS</h1>
+        </header>
+
+        <naviagate>
+            <ul>
+                <img src="tree.jpg" alt="PROJECTION TREE" style="width:400px;height:300px;">
+            </ul>
+        </naviagate>
+
+        <article>
+            <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'tab1')">Perspective</button>
+            <button class="tablinks" onclick="openCity(event, 'tab2')">Parellel</button>
+            <button class="tablinks" onclick="openCity(event, 'tab3')">3D Transformations</button>
+            <button class="tablinks" onclick="openCity(event, 'tab6')">Vanishing Points</button>
+            <button class="tablinks" onclick="openCity(event, 'tab5')">Oblique Projections</button>
+            <button class="tablinks" onclick="openCity(event, 'tab4')">CREATIVITY</button>
+            </div>
+                
+            <div id="tab1" class="tabcontent">
+            <h2>You can view the following:</h2>
+            <h3>1. One-Point</h3>
+            <h3>2. Two-Point</h3>
+            <h3>3. Three-Point</h3>
+            <a href="perspective.html">CLICK HERE</a>
+            </div>
+
+            <div id="tab2" class="tabcontent">
+            <h2>You can view the following:</h2>
+            <h3>1. Isometric</h3>
+            <h3>2. Dimetric</h3>
+            <h3>3. Trimetric</h3>
+            <h3>4. Multiview Orthographic</h3>
+            <h3>5. Oblique</h3>
+            <a href="parallel.html">CLICK HERE</a> 
+            </div>
+
+            <div id="tab3" class="tabcontent">
+            <h2>View the 3D Transformations by onclicking the below link</h2>
+            <h3>FRONT VIEW:&nbsp<a href="frontview.html">CLICK HERE</a><br></h3>
+            <h3>SIDE VIEW:&nbsp<a href="sideview.html">CLICK HERE</a><br></h3>
+            <h3>TOP VIEW:&nbsp<a href="topview.html">CLICK HERE</a><br></h3>
+            <h3>ISOMETRIC VIEW:&nbsp<a href="isometricview.html">CLICK HERE</a><br></h3>
+            </div>
+
+            <div id="tab4" class="tabcontent">
+            <h2>You can view the additional work by clicking the following:</h2>
+            <h3>Object used for drawing GEOMETRIC PROJECTIONS (3D):&nbsp<a href="impress.html">CLICK HERE</a></h3>
+            </div>
+
+            <div id="tab5" class="tabcontent">
+            <h2>Angles Of Different Oblique Projections</h2>
+            <h3>To view the influence on the result:&nbsp<a href="obliqueviews.html">CLICK HERE</a></h3>
+            </div>
+
+            <div id="tab6" class="tabcontent">
+            <h2></h2>
+            <h3>To view how Vanishing Points influence the final projection on the screen:&nbsp<a href="vanishing.html">CLICK HERE</a></h3>
+            </div>
+
+        </article>
+
+        <footer>
+            <a href="index.html">
+                <div class="link">
+                    <p1>Main Menu</p1>
+                </div>
+            </a>
+        </footer>
+
+        <p>Programming Assignment 4 by
+            <a href="mailto:KiranChandrashekhar_Shettar@student.uml.edu?Subject=UML%20Website%20Query" target="_top">Kiran Shettar</a>
+        </p>
+    </div>
+
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+
+</body>
+</html>

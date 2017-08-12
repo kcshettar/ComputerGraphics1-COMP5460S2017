@@ -1,0 +1,199 @@
+<html>
+
+<head>
+    <title>SVG DRAWING</title>
+    <style>
+        header,
+        footer {
+            padding: 1em;
+            color: white;
+            background-color: black;
+            clear: left;
+            text-align: center;
+        }
+        
+        .link {
+            color: white;
+            text-decoration: none;
+            background-color: none;
+        }
+        
+        naviagate ul a {
+            text-decoration: none;
+        }
+        
+        article {
+            margin-left: 170px;
+            border-left: 1px solid gray;
+            padding: 1em;
+            overflow: hidden;
+        }
+        
+        <!--Comment: To change the color of the e-Mail link --> a:link {
+            color: green;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: red;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        
+        a:active {
+            color: yellow;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        
+        .clearfix:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+        
+        .clearfix {
+            display: inline-block;
+        }
+        /* start commented backslash hack \*/
+        
+        * html .clearfix {
+            height: 1%;
+        }
+        
+        .clearfix {
+            display: block;
+        }
+        
+        .fLeft {
+            float: left;
+        }
+        
+        .fRight {
+            float: right;
+        }
+    </style>
+</head>
+
+<body BGCOLOR="DCDCDC">
+    <div class="container clearfix">
+
+        <header>
+            <h1>STANDARD TECHNICAL DRAWING CONFIGURATIONS</h1>
+        </header>
+
+        <br><br>
+        
+        <svg width="1000" height="750">
+        <!--first quadrant-->
+        <!--text-->
+        <text x="0" y="360" fill="#484f00" font-size="40">FRONT VIEW</text>
+        <!--traingle roof top-->
+        <line x1="100" y1="0" x2="0" y2="150" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="100" y1="0" x2="200" y2="150" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="0" y1="150" x2="200" y2="150" style="stroke:#5b041d; stroke-width:5" />
+
+        <!--house bottom-->
+        <line x1="0" y1="150" x2="0" y2="300" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="0" y1="300" x2="200" y2="300" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="200" y1="150" x2="200" y2="300" style="stroke:#5b041d; stroke-width:5" />
+
+        <!--left window-->
+        <line x1="30" y1="170" x2="30" y2="200" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="30" y1="170" x2="60" y2="170" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="60" y1="170" x2="60" y2="200" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="30" y1="200" x2="60" y2="200" style="stroke:#5b041d; stroke-width:5" />
+
+        <!--right window-->
+        <line x1="140" y1="170" x2="140" y2="200" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="140" y1="170" x2="170" y2="170" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="170" y1="170" x2="170" y2="200" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="140" y1="200" x2="170" y2="200" style="stroke:#5b041d; stroke-width:5" />
+
+
+        <!--left eye-->
+        <circle cx="45" cy="185" r="10" stroke="yellow" stroke-width="3" fill="yellow" />
+
+        <!--right eye-->
+        <circle cx="155" cy="185" r="10" stroke="yellow" stroke-width="3" fill="yellow" />
+
+        <!--chimney-->
+        <line x1="150" y1="10" x2="190" y2="10" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="150" y1="10" x2="150" y2="75" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="190" y1="10" x2="190" y2="135" style="stroke:#5b041d; stroke-width:5" />
+
+        <!--smile-->
+        <path d="M 60 260 q 40 40 90 0" stroke="#1f1b63" stroke-width="5" fill="none" />
+        <path d="M 60 260 q 40 5 90 0" stroke="#1f1b63" stroke-width="5" fill="none" />
+
+        <!--second quadrant-->
+        <text x="385" y="360" fill="#484f00" font-size="40">SIDE VIEW</text>
+        <!--roof top-->
+        <line x1="400" y1="100" x2="600" y2="100" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="400" y1="100" x2="400" y2="150" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="400" y1="150" x2="600" y2="150" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="600" y1="100" x2="600" y2="150" style="stroke:#5b041d; stroke-width:5" />
+
+        <!--home bottom-->
+        <line x1="430" y1="150" x2="430" y2="300" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="430" y1="300" x2="570" y2="300" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="570" y1="300" x2="570" y2="150" style="stroke:#5b041d; stroke-width:5" />
+
+        <!--left window-->
+        <line x1="450" y1="180" x2="470" y2="180" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="450" y1="180" x2="450" y2="200" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="450" y1="200" x2="470" y2="200" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="470" y1="200" x2="470" y2="180" style="stroke:#5b041d; stroke-width:5" />
+
+        <!--right window-->
+        <line x1="530" y1="180" x2="550" y2="180" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="530" y1="180" x2="530" y2="200" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="530" y1="200" x2="550" y2="200" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="550" y1="200" x2="550" y2="180" style="stroke:#5b041d; stroke-width:5" />
+
+        <!--chimney-->
+        <line x1="460" y1="60" x2="530" y2="60" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="460" y1="60" x2="460" y2="100" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="530" y1="60" x2="530" y2="100" style="stroke:#5b041d; stroke-width:5" />
+
+        <!--3rd quadrant-->
+        <text x="0" y="710" fill="#484f00" font-size="40">TOP VIEW</text>
+        <!--Home base-->
+        <line x1="0" y1="500" x2="250" y2="500" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="0" y1="500" x2="0" y2="650" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="0" y1="650" x2="250" y2="650" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="250" y1="500" x2="250" y2="650" style="stroke:#5b041d; stroke-width:5" />
+
+        <!--centre line-->
+        <line x1="125" y1="500" x2="125" y2="650" style="stroke:#5b041d; stroke-width:5" />
+
+        <!--chimney-->
+        <line x1="160" y1="550" x2="190" y2="550" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="160" y1="550" x2="160" y2="600" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="160" y1="600" x2="190" y2="600" style="stroke:#5b041d; stroke-width:5" />
+        <line x1="190" y1="550" x2="190" y2="600" style="stroke:#5b041d; stroke-width:5" />
+
+        <!--4th quadrant-->
+        <text x="400" y="580" font-family="Lucida Console" font-size="30" fill="#484f00" >4th QUADRANT for
+        <tspan x="400" y="630">FUTURE USE</tspan></text>
+        </svg>
+        
+
+        <footer>
+            <a href="index.html">
+                <div class="link">
+                    <p1>Main Menu</p1>
+                </div>
+            </a>
+        </footer>
+        <p>Programming Assignment 2 by
+            <a href="mailto:KiranChandrashekhar_Shettar@student.uml.edu?Subject=UML%20Website%20Query" target="_top">Kiran Shettar</a>
+        </p>
+    </div>
+</body>
+
+</html>

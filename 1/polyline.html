@@ -1,0 +1,282 @@
+<html>
+
+<head>
+    <title>polyline (2D)</title>
+    <style>
+        header,
+        footer {
+            padding: 1em;
+            color: white;
+            background-color: black;
+            clear: left;
+            text-align: center;
+        }
+        
+        .link {
+            color: white;
+            text-decoration: none;
+            background-color: none;
+        }
+        
+        leftarea {
+            float: left;
+            max-width: 900px;
+            margin: 0;
+            padding: 1em;
+        }
+        
+        leftarea ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        leftarea ul a {
+            text-decoration: none;
+        }
+        
+        article {
+            border-left: 1px solid gray;
+            padding: 1em;
+            overflow: hidden;
+        }
+        
+        <!--Comment: To change the color of the e-Mail link --> a:link {
+            color: green;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: red;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        
+        a:active {
+            color: yellow;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        
+        .button {
+            background-color: #555555;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        
+        .button1 {
+            font-size: 10px;
+        }
+        
+        .button2 {
+            font-size: 12px;
+        }
+        
+        .button3 {
+            font-size: 13px;
+        }
+        
+        .button4 {
+            font-size: 20px;
+        }
+        
+        .button5 {
+            font-size: 24px;
+        }
+        
+        .clearfix:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+        
+        .clearfix {
+            display: inline-block;
+        }
+        /* start commented backslash hack \*/
+        
+        * html .clearfix {
+            height: 1%;
+        }
+        
+        .clearfix {
+            display: block;
+        }
+        
+        .fLeft {
+            float: left;
+        }
+        
+        .fRight {
+            float: right;
+        }
+    </style>
+</head>
+
+<body BGCOLOR="DCDCDC">
+    <div class="container clearfix">
+
+        <header>
+            <h1>Draw Polyline (open)</h1>
+        </header>
+
+        <leftarea class="fLeft">
+            <ul>
+                <h3>
+                    <u>Fill in the values below:</u>
+                </h3>
+                <h3><input id="x1"> - x</input>
+                </h3>
+                <h3><input id="y1"> - y</input>
+                </h3>
+
+                <h3><input type="button" id="add" class="button button3" value="Add-Coordinates"> (Add more co-ordinates)</input>
+                </h3>
+                <button onClick="AcceptUserInput()" id="DrawBTN" class="button button3">DRAW</button><br>
+                <input type="button" value="CLEAR" id="clear" class="button button2" onclick="ClearDrawing()" />
+                <br><br>
+                <hr>
+                <h4>Canvas drawaing area: 500*417 pixels</h4>
+            </ul>
+        </leftarea>
+
+        <article class="fRight">
+            <canvas id="drawArea" width="500" height="417" style="border:3px solid black;">
+                Your browser does not support the HTML5 canvas tag.</canvas>
+        </article>
+
+        <script>
+        var canvas = document.getElementById("drawArea");
+        var cntxobj = canvas.getContext("2d");
+        var canvasData = cntxobj.getImageData(0, 0, canvas.width, canvas.height);
+
+        var x = [];
+        var y = [];
+
+        document.getElementById('add').addEventListener('click', function () 
+        {
+            x.push(parseInt(document.getElementById("x1").value));
+            y.push(parseInt(document.getElementById("y1").value));
+            x1.value = ''; y1.value = '';
+
+        }, false);
+
+        function ClearDrawing() 
+        {
+            x.pop(); x.pop(); x.pop(); //clearing the stack
+            y.pop(); y.pop(); y.pop(); //clearing the stack
+            cntxobj.clearRect(0, 0, canvas.width, canvas.height); //clears the whole canvas area
+            x1.value = ''; y1.value = ''; //sets the  input values to null		    
+            location.reload(true);
+        }
+
+        function AcceptUserInput() 
+        {
+            var Count_ArrayLength = x.length;
+            var index = 0;
+            for (index = 0; index < Count_ArrayLength; ++index) 
+            {
+                if (index != Count_ArrayLength - 1) 
+                {
+                    AcceptValue(parseInt(x[index]), parseInt(y[index]), parseInt(x[index + 1]), parseInt(y[index + 1]));
+                }
+            }
+        }
+
+        function AcceptValue(x1, y1, x2, y2) 
+        {
+            //document.write(x1+','+y1+','+x2+','+y2+'<br>');
+            var temp;
+            var dx = Math.abs(x1 - x2);
+            var dy = Math.abs(y1 - y2);
+            var slopegt1 = 0;
+            var incry;
+
+            if (dy > dx) 
+            { 
+                // We have to go through Positive x-axis direction
+                temp = x1;
+                x1 = y1;
+                y1 = temp;
+                temp = x2;
+                x2 = y2;
+                y2 = temp;
+                temp = dy;
+                dy = dx;
+                dx = temp;
+                slopegt1 = 1;
+            }
+
+            if (x1 > x2) 
+            {
+                temp = x1;
+                x1 = x2;
+                x2 = temp;
+                temp = y1;
+                y1 = y2;
+                y2 = temp;
+            }
+            
+            if (y1 > y2)
+                incry = -1;
+            else
+                incry = 1;
+
+            var D = 2 * dy - dx;
+            var incre = 2 * dy;
+            var incrne = 2 * (dy - dx);
+
+            while (x1 < x2) 
+            {
+                if (D <= 0)
+                    D += incre;
+                else 
+                {
+                    D += incrne;
+                    y1 += incry;
+                }
+                x1++;
+                if (slopegt1) 
+                {
+                    drawPixel(y1, x1, 107, 14, 42, 255);
+                }
+                else 
+                {
+                    drawPixel(x1, y1, 107, 14, 42, 255);
+                }
+            }
+            cntxobj.putImageData(canvasData, 0, 0);
+        }
+
+        function drawPixel(x, y, r, g, b, a) 
+        {
+            var iteratingindex = (x + y * canvas.width) * 4;
+            canvasData.data[iteratingindex + 0] = r;
+            canvasData.data[iteratingindex + 1] = g;
+            canvasData.data[iteratingindex + 2] = b;
+            canvasData.data[iteratingindex + 3] = a;
+        }
+        </script>
+    </div>
+
+    <div>
+        <footer>
+            <a href="index.html">
+                <div class="link">
+                    <p1>Main Menu</p1>
+                </div>
+            </a>
+        </footer>
+    </div>
+</body>
+
+</html>

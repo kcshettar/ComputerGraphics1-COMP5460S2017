@@ -1,0 +1,270 @@
+<html>
+
+<head>
+    <title>line (2D)</title>
+    <style>
+        header,
+        footer {
+            padding: 1em;
+            color: white;
+            background-color: black;
+            clear: left;
+            text-align: center;
+        }
+        
+        .link {
+            color: white;
+            text-decoration: none;
+            background-color: none;
+        }
+        
+        leftarea {
+            float: left;
+            max-width: 900px;
+            margin: 0;
+            padding: 1em;
+        }
+        
+        leftarea ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        leftarea ul a {
+            text-decoration: none;
+        }
+        
+        article {
+            border-left: 1px solid gray;
+            padding: 1em;
+            overflow: hidden;
+        }
+        
+        <!--Comment: To change the color of the e-Mail link --> a:link {
+            color: green;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: red;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        
+        a:active {
+            color: yellow;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        
+        .button {
+            background-color: #555555;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        
+        .button1 {
+            font-size: 10px;
+        }
+        
+        .button2 {
+            font-size: 12px;
+        }
+        
+        .button3 {
+            font-size: 13px;
+        }
+        
+        .button4 {
+            font-size: 20px;
+        }
+        
+        .button5 {
+            font-size: 24px;
+        }
+        
+        .clearfix:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+        
+        .clearfix {
+            display: inline-block;
+        }
+        /* start commented backslash hack \*/
+        
+        * html .clearfix {
+            height: 1%;
+        }
+        
+        .clearfix {
+            display: block;
+        }
+        
+        .fLeft {
+            float: left;
+        }
+        
+        .fRight {
+            float: right;
+        }
+    </style>
+</head>
+
+<body BGCOLOR="DCDCDC">
+    <div class="container clearfix">
+
+        <header>
+            <h1>Draw a Line</h1>
+        </header>
+
+        <leftarea class="fLeft">
+            <ul>
+                <h3>
+                    <u>Fill in the values below:</u>
+                </h3>
+                <h3><input id="x1"> - x1</input>
+                </h3>
+                <h3><input id="y1"> - y1</input>
+                </h3>
+                <h3><input id="x2"> - x2</input>
+                </h3>
+                <h3><input id="y2"> - y2</input>
+                </h3>
+
+                <button onClick="AcceptUserInput()" "alert('Success')" id="DrawBTN" class="button button3">DRAW</button><br>
+                <input type="button" value="CLEAR" id="clear" class="button button2" onclick="ClearDrawing()" />
+                <hr>
+                <h4>Canvas drawaing area: 500*406 pixels</h4>
+            </ul>
+        </leftarea>
+
+        <article class="fRight">
+            <canvas id="drawArea" width="500" height="406" style="border:3px solid black;">
+                Your browser does not support the HTML5 canvas tag.</canvas>
+        </article>
+
+        <script>
+        var canvas = document.getElementById("drawArea");
+        var objcntx = canvas.getContext("2d");
+        objcntx.linewidth = 10;
+
+        var canvasData = objcntx.getImageData(100, 100, canvas.width, canvas.height);
+
+        function ClearDrawing() 
+        {
+            objcntx.clearRect(0, 0, canvas.width, canvas.height);    //clears the whole canvas area
+            x1.value = ''; y1.value = ''; x2.value = ''; y2.value = ''; //sets the  input values to null
+            location.reload(true); //refresh the browser page
+        }
+
+        function AcceptUserInput() 
+        {
+            var x1 = parseInt(document.getElementById("x1").value);
+            var y1 = parseInt(document.getElementById("y1").value);
+            var x2 = parseInt(document.getElementById("x2").value);
+            var y2 = parseInt(document.getElementById("y2").value);
+            var coordinateValue;
+            var dx = Math.abs(x1 - x2);
+            var dy = Math.abs(y1 - y2);
+            var slopegt1 = 0;
+            var increment;
+
+            if (dy > dx) 
+            {
+                // We have to go through Positive x-axis direction
+                swapValues();
+            }
+
+            if (x1 > x2) 
+            {
+                swapCoordinateValues();
+            }
+
+            if (y1 > y2)
+                increment = -1;
+            else
+                increment = 1;
+
+            var D = 2 * dy - dx;
+            var incre = 2 * dy;
+            var incrne = 2 * (dy - dx);
+
+            while (x1 < x2) 
+            {
+                if (D <= 0)
+                    D += incre;
+                else 
+                {
+                    D += incrne;
+                    y1 += increment;
+                }
+                x1++;
+
+                if (slopegt1)
+                    drawPixel(y1, x1, 107, 14, 42, 255);
+                else
+                    drawPixel(x1, y1, 107, 14, 42, 255);
+            }
+            objcntx.putImageData(canvasData, 0, 0);
+        }
+
+        function swapValues() 
+        {
+            coordinateValue = x1;
+            x1 = y1;
+            y1 = coordinateValue;
+            coordinateValue = x2;
+            x2 = y2;
+            y2 = coordinateValue;
+            coordinateValue = dy;
+            dy = dx;
+            dx = coordinateValue;
+            slopegt1 = 1;
+        }
+
+        function swapCoordinateValues() 
+        {
+            coordinateValue = x1;
+            x1 = x2;
+            x2 = coordinateValue;
+            coordinateValue = y1;
+            y1 = y2;
+            y2 = coordinateValue;
+        }
+
+        function drawPixel(x, y, r, g, b, a) 
+        {
+            objcntx.fillStyle = "#6b0e2a";
+            var indx = (x + y * canvas.width) * 4;
+            canvasData.data[indx + 0] = r;
+            canvasData.data[indx + 1] = g;
+            canvasData.data[indx + 2] = b;
+            canvasData.data[indx + 3] = a;
+        }
+        </script>
+    </div>
+
+    <div>
+        <footer>
+            <a href="index.html">
+                <div class="link">
+                    <p1>Main Menu</p1>
+                </div>
+            </a>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>3D Isometric View</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <style>
+    body {
+      text-align: center;
+      background-color: #DCDCDC;
+      overflow: hidden;
+    }
+    
+    .main {
+      padding-top: 100px;
+      padding-left: 300px;
+      width: 250px;
+      height: 250px;
+      text-align: left;
+      display: inline-block;
+    }
+    
+    .cont {
+      text-align: center;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      -webkit-transform-style: preserve-3d;
+      -webkit-transform: rotateX(-15deg) rotateY(15deg);
+      -webkit-animation: rotateCube 7s infinite linear;
+    }
+    
+    .cube {
+      position: absolute;
+      /*border: 1px solid #fff;*/
+      background: #FFF;
+      opacity: .85;
+      background-size: auto 100%;
+    }
+    
+    .cube-front {
+      width: 300px;
+      height: 300px;
+      -webkit-transform: translate3d(0, 0, 125px);
+      background-color: #DCDCDC;
+    }
+    
+    @-webkit-keyframes rotateCube {
+      0% {
+        -webkit-transform: rotateY(0deg) rotateX(0deg);
+      }
+      100% {
+        -webkit-transform: rotateY(-360deg) rotateX(-360deg);
+      }
+    }
+    
+    header,
+    footer {
+      padding: 1em;
+      color: white;
+      background-color: black;
+      clear: left;
+      text-align: center;
+    }
+    
+    .main:after {
+      visibility: hidden;
+      display: block;
+      font-size: 0;
+      content: " ";
+      clear: both;
+      height: 0;
+    }
+    
+    * html .main {
+      height: 1%;
+    }
+    
+    .main {
+      display: block;
+    }
+    
+    .fLeft {
+      float: left;
+    }
+    
+    .fRight {
+      float: right;
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+
+<body>
+  <header>
+    <h1>3D TRANSFORMATIONS ON HOUSE VIEWS</h1>
+  </header>
+  <div class="main" style="float:center; width:50%;">
+    <div class="cont">
+      <div class="cube cube-front">
+        <svg width="500" height="300" viewbox="0 0 600 530">
+          <path d="M300 500 L150 400 L150 200 L300 300 Z" style="fill:#DCDCDC;stroke:#5b041d;stroke-width:5;opacity:5" />
+          <path d="M300 500 L550 400 L550 200 L300 300 Z" style="fill:#DCDCDC;stroke:#5b041d;stroke-width:5;opacity:5" />
+          <path d="M300 300 L150 200 L250 150 L500 50 L550 200 Z" style="fill:#DCDCDC;stroke:#5b041d;stroke-width:5;opacity:5" />
+          <line x1="250" y1="150" x2="300" y2="300" style="stroke:#5b041d;stroke-width:5; opacity:5" />
+          <path d="M250 466.66 L200 433.33 L200 366.66 L250 400 Z" style="fill:#DCDCDC;stroke:#5b041d;stroke-width:5;opacity:5" />
+          <path d="M200 290 L170 270 L170 240 L200 260 Z" style="fill:#DCDCDC;stroke:#5b041d;stroke-width:5;opacity:5" />
+          <ellipse cx="319" cy="57" rx="11" ry="9" fill="yellow" style="stroke:yellow; stroke-width:5;opacity:5" transform=" rotate(45)"/>
+          <path d="M250 290 L280 310 L280 340 L250 320 Z" style="fill:#DCDCDC;stroke:#5b041d;stroke-width:5;opacity:5" />
+          <ellipse cx="410" cy="35" rx="11" ry="9" fill="yellow" style="stroke:yellow; stroke-width:5;opacity:5" transform=" rotate(45)"/>
+          <path d="M470 290 L470 260 L500 245 L500 275 Z" style="fill:#DCDCDC;stroke:#5b041d;stroke-width:5;opacity:5" />
+          <path d="M350 310 L380 295 L380 325 L350 340 Z" style="fill:#DCDCDC;stroke:#5b041d;stroke-width:5;opacity:5" />
+          <path d="M470 200 L500 185 L500 85 L470 100 Z" style="fill:#DCDCDC;stroke:#5b041d;stroke-width:5;opacity:5" />
+          <path d="M470 200 L440 185 L440 85 L470 100 Z" style="fill:#DCDCDC;stroke:#5b041d;stroke-width:5;opacity:5" />
+          <path d="M470 100 L440 85 L470 70 L500 85 Z" style="fill:#DCDCDC;stroke:#5b041d;stroke-width:5;opacity:5" />
+        </svg>
+      </div>
+    </div>
+  </div>
+  
+</body>
+
+</html>

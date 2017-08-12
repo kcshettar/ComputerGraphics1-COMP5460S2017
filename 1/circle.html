@@ -1,0 +1,228 @@
+<html>
+
+<head>
+    <title>circle (2D)</title>
+    <style>
+        header,
+        footer {
+            padding: 1em;
+            color: white;
+            background-color: black;
+            clear: left;
+            text-align: center;
+        }
+        
+        .link {
+            color: white;
+            text-decoration: none;
+            background-color: none;
+        }
+        
+        leftarea {
+            float: left;
+            max-width: 900px;
+            margin: 0;
+            padding: 1em;
+        }
+        
+        leftarea ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        leftarea ul a {
+            text-decoration: none;
+        }
+        
+        article {
+            border-left: 1px solid gray;
+            padding: 1em;
+            overflow: hidden;
+        }
+        
+        <!--Comment: To change the color of the e-Mail link --> a:link {
+            color: green;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: red;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        
+        a:active {
+            color: yellow;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        
+        .button {
+            background-color: #555555;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        
+        .button1 {
+            font-size: 10px;
+        }
+        
+        .button2 {
+            font-size: 12px;
+        }
+        
+        .button3 {
+            font-size: 13px;
+        }
+        
+        .button4 {
+            font-size: 20px;
+        }
+        
+        .button5 {
+            font-size: 24px;
+        }
+        
+        .clearfix:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+        
+        .clearfix {
+            display: inline-block;
+        }
+        /* start commented backslash hack \*/
+        
+        * html .clearfix {
+            height: 1%;
+        }
+        
+        .clearfix {
+            display: block;
+        }
+        
+        .fLeft {
+            float: left;
+        }
+        
+        .fRight {
+            float: right;
+        }
+    </style>
+</head>
+
+<body BGCOLOR="DCDCDC">
+    <div class="container clearfix">
+
+        <header>
+            <h1>Draw a Circle</h1>
+        </header>
+
+        <leftarea class="fLeft">
+            <ul>
+                <h3>
+                    <u>Fill in the values below:</u>
+                </h3>
+                <h3><input id="x"> - x</input>
+                </h3>
+                <h3><input id="y"> - y</input>
+                </h3>
+                <h3><input id="radius"> - Radius</h3>
+
+
+                <button onClick="AcceptUserInput()" id="DrawBTN" class="button button3">DRAW</button><br>
+                <input type="button" value="CLEAR" id="clear" class="button button2" onclick="ClearDrawing()" />
+                <br><br><br>
+                <hr>
+                <h4>Canvas drawaing area: 500*406 pixels</h4>
+            </ul>
+        </leftarea>
+
+        <article class="fRight">
+            <canvas id="drawArea" width="500" height="406" style="border:3px solid black;">
+                Your browser does not support the HTML5 canvas tag.</canvas>
+        </article>
+
+        <script>
+        var canvas = document.getElementById("drawArea");
+        var objcntx = canvas.getContext("2d");
+
+        function ClearDrawing() 
+        {
+            objcntx.clearRect(0, 0, canvas.width, canvas.height); //clears the whole canvas area
+            x.value = ''; y.value = ''; radius.value = ''; //sets the  input values to null
+            location.reload(true);
+        }
+
+        function AcceptUserInput() 
+        {
+            var x = parseInt(document.getElementById("x").value);
+            var y = parseInt(document.getElementById("y").value);
+            var radius = parseInt(document.getElementById("radius").value);
+            Drawcircle(radius, x, y);
+        }
+
+        //function to draw a circle
+        function Drawcircle(radius, xc, yc)
+        {
+            var p;
+            var x, y;
+            p = 1 - radius;
+            x = 0;
+            y = radius;
+            draw(x, y, xc, yc);
+
+            while (x <= y) 
+            {
+                x++;
+                if (p < 0) 
+                {
+                    p += 2 * x + 1;
+                }
+                else 
+                {
+                    p += 2 * (x - y) + 1;
+                    y--;
+                }
+                draw(x, y, xc, yc);
+            }
+        }
+
+        function draw(x, y, xc, yc) 
+        {
+            objcntx.fillStyle = "#6b0e2a";
+            objcntx.fillRect(xc + x, yc + y, 2.5, 2.5);
+            objcntx.fillRect(xc + x, yc - y, 2.5, 2.5);
+            objcntx.fillRect(xc - x, yc + y, 2.5, 2.5);
+            objcntx.fillRect(xc - x, yc - y, 2.5, 2.5);
+            objcntx.fillRect(xc + y, yc + x, 2.5, 2.5);
+            objcntx.fillRect(xc - y, yc + x, 2.5, 2.5);
+            objcntx.fillRect(xc + y, yc - x, 2.5, 2.5);
+            objcntx.fillRect(xc - y, yc - x, 2.5, 2.5);
+        }
+        </script>
+    </div>
+
+    <div>
+        <footer>
+            <a href="index.html">
+                <div class="link">
+                    <p1>Main Menu</p1>
+                </div>
+            </a>
+        </footer>
+    </div>
+</body>
+
+</html>

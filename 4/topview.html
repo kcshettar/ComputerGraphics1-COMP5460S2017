@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>3D Top View</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <style>
+        body {
+            text-align: center;
+            background-color: #DCDCDC;
+            overflow: hidden;
+        }
+        
+        .main {
+            padding-top: 100px;
+            padding-left: 300px;
+            width: 250px;
+            height: 250px;
+            text-align: left;
+            display: inline-block;
+        }
+        
+        .cont {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            -webkit-transform-style: preserve-3d;
+            -webkit-transform: rotateX(-15deg) rotateY(15deg);
+            -webkit-animation: rotateCube 7s infinite linear;
+        }
+        
+        .cube {
+            position: absolute;
+            /*border: 1px solid #fff;*/
+            background: #FFF;
+            opacity: .85;
+            background-size: auto 100%;
+        }
+        
+        .cube-front {
+            width: 300px;
+            height: 300px;
+            -webkit-transform: translate3d(0, 0, 125px);
+            background-color: #DCDCDC;
+        }
+        
+        @-webkit-keyframes rotateCube {
+            0% {
+                -webkit-transform: rotateY(0deg) rotateX(0deg);
+            }
+            100% {
+                -webkit-transform: rotateY(-360deg) rotateX(-360deg);
+            }
+        }
+        
+        header,
+        footer {
+            padding: 1em;
+            color: white;
+            background-color: black;
+            clear: left;
+            text-align: center;
+        }
+        
+        .main:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+        
+        * html .main {
+            height: 1%;
+        }
+        
+        .main {
+            display: block;
+        }
+        
+        .fLeft {
+            float: left;
+        }
+        
+        .fRight {
+            float: right;
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <h1>3D TRANSFORMATIONS ON HOUSE VIEWS</h1>
+    </header>
+
+    <div class="main" style="float:center; width:50%;">
+        <div class="cont">
+            <div class="cube cube-front">
+                <svg width="500" height="300" viewbox="0 0 600 530">
+                    <text x="140" y="455" fill="#484f00" font-size="40">TOP VIEW</text>
+                    <!--quadrant 3-->
+                    <!--scaling the top view-->
+                    <line x1="30" y1="100" x2="300" y2="100" style="stroke:#5b041d; stroke-width:5" opacity: "0.4" transform="scale(1.4)" />
+                    <line x1="30" y1="290" x2="300" y2="290" style="stroke:#5b041d; stroke-width:5" opacity: "0.4" transform="scale(1.4)" />
+                    <line x1="30" y1="100" x2="30" y2="290" style="stroke:#5b041d; stroke-width:5" opacity: "0.4" transform="scale(1.4)" />
+                    <line x1="160" y1="100" x2="160" y2="290" style="stroke:#5b041d; stroke-width:5" opacity: "0.4" transform="scale(1.4)" />
+                    <line x1="300" y1="100" x2="300" y2="290" style="stroke:#5b041d; stroke-width:5" opacity: "0.4" transform="scale(1.4)" />
+
+                    <!--chimney-->
+                    <rect x="280" y="175" rx="20" ry="20" width="80" height="80" style="fill:rgb(220,220,220); stroke:#5b041d; stroke-width:5">
+                </svg>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

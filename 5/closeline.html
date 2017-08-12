@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+
+    <head><title>Question 2</title>
+        <style>
+            header,
+            footer {
+                padding: 1em;
+                color: white;
+                background-color: black;
+                clear: left;
+                text-align: center;
+            }
+            
+            .link {
+                color: white;
+                text-decoration: none;
+                background-color: none;
+            }
+            
+            naviagate ul a {
+                text-decoration: none;
+            }
+            
+            article {
+                margin-left: 170px;
+                border-left: 1px solid gray;
+                padding: 1em;
+                overflow: hidden;
+            }
+            
+            /* Unused function below
+            Comment: To change the color of the e-Mail link*/
+            a:link {
+                color: green;
+                background-color: transparent;
+                text-decoration: none;
+            }
+            
+            a:hover {
+                color: red;
+                background-color: transparent;
+                text-decoration: underline;
+            }
+            
+            a:active {
+                color: yellow;
+                background-color: transparent;
+                text-decoration: underline;
+            }
+            /*Unused functions end here*/
+
+            .clearfix:after {
+                visibility: hidden;
+                display: block;
+                font-size: 0;
+                content: " ";
+                clear: both;
+                height: 0;
+            }
+            
+            .clearfix {
+                display: inline-block;
+            }
+            /* start commented backslash hack \*/
+            
+            * html .clearfix {
+                height: 1%;
+            }
+            
+            .clearfix {
+                display: block;
+            }
+            
+            .fLeft {
+                float: left;
+            }
+            
+            .fRight {
+                float: right;
+            }
+
+            .scene {
+                width: 300px;
+                height: 300px;
+                perspective: 1200px;
+                margin: auto;
+            }
+
+            #pyramid {
+                position: relative;
+                transform-style: preserve-3d;
+                width: 300px;
+                height: 300px;
+            }
+
+            .side {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                box-sizing: border-box;
+                opacity: 1.0;
+            }
+
+
+            /* rotateX changes the angle of the triangle */
+
+            .front {
+                transform: translateZ(75px) rotateX(20deg);
+            }
+
+            .back {
+                transform: translateZ(-75px) rotateX(-20deg);
+            }
+
+            .left {
+                transform: translateX(-75px) rotateY(-90deg) rotateX(20deg);
+            }
+
+            .right {
+                transform: translateX(75px) rotateY(90deg) rotateX(20deg);
+            }
+
+            .front,
+            .back,
+            .left,
+            .right {
+                width: 0;
+                height: 0;
+                border-left: 150px solid transparent;
+                border-right: 150px solid transparent;
+                border-bottom: 440px solid black;
+                /*changes the height of the triangles*/
+            }
+        </style>
+    </head>
+
+    <body BGCOLOR="DCDCDC">
+        <div class="container clearfix">
+            <header>
+                <h1>View of the closed lines (3D)</h1>
+            </header
+
+            <div class="scene">
+                <div id="pyramid" style="margin-left: 480px">
+                    <div class="side front"><!-- FRONT --></div>
+                    <div class="side left"><!-- LEFT --></div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+<script>
+    let width = window.innerWidth,
+    tar = {
+        x: Math.random() * width
+    },
+    pos = {
+        x: Math.random() * width
+    },
+    ease = 0.01;
+
+    //calculate distance
+    let easeTo = (position, target, ease) => {
+    let distanceX = target.x - position.x;
+    position.x += distanceX * ease;
+
+        //stop animation when distance is close to 0
+        if (Math.abs(distanceX) < 0.1) {
+            position.x = target.x;
+            return false; //stop request animation
+        }
+        return true; //starts request animation
+    }
+
+    //random background color
+    let sides = Array.from(document.querySelectorAll('.side'));
+    sides.map(n => n.style.borderBottomColor = 'hsl(' + (Math.random() * 360) + ',50%,50%)');
+
+    //looping func
+    let update = () => {
+    pyramid.style.transform = "rotateY(" + pos.x + "deg)";
+    easing = easeTo(pos, tar, ease);
+
+    //if true
+    if (easing) requestAnimationFrame(update);
+    }
+
+    //move pyramid base on position of the mouse
+    window.addEventListener('mousemove', (e) => {
+    tar.x = e.clientX;
+
+        //this will kick off the request animation frame if it's not already running
+        //if false
+        if (!easing) {
+            easing = true;
+            update();
+        }
+    });
+    update();
+</script>
+
+<html>

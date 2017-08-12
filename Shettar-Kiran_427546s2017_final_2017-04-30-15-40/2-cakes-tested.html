@@ -1,0 +1,169 @@
+<!-- I have used the following resources 
+1. https://www.w3schools.com/html/default.asp
+2. https://www.w3schools.com/html/html_css.asp
+-->
+<html>
+    
+    <head><title>Question 2</title>
+        <style>
+            div.container {
+                width: 100%;
+                border: 1px solid gray;
+            }
+
+            header, footer {
+                padding: 1em;
+                color: white;
+                background-color: black;
+                clear: left;
+                text-align: center;
+            }
+
+            .link
+            {
+            color:white;
+            text-decoration: none; 
+            background-color: none;
+            }
+
+            naviagate {
+                float: left;
+                max-width: 160px;
+                margin: 0;
+                padding: 1em;
+            }
+
+            naviagate ul {
+                list-style-type: none;
+                padding: 0;
+            }
+                        
+            naviagate ul a {
+                text-decoration: none;
+            }
+
+            article {
+                margin-left: 500px;
+                overflow: hidden;
+            }
+
+            a:link {
+                color: green;
+                background-color: transparent;
+                text-decoration: none;
+            }
+
+            a:hover {
+                color: red;
+                background-color: transparent;
+                text-decoration: underline;
+            }
+
+            a:active {
+                color: yellow;
+                background-color: transparent;
+                text-decoration: underline;
+            }
+
+            .clearfix:after {
+                visibility: hidden;
+                display: block;
+                font-size: 0;
+                content: " ";
+                clear: both;
+                height: 0;
+            }
+
+            .clearfix {
+                display: inline-block;
+            }
+
+            * html .clearfix {
+                height: 1%;
+            }
+
+            .clearfix {
+                display: block;
+            }
+
+            .fLeft {
+                float: left;
+            }
+
+            .fRight {
+                float: right;
+            }
+			
+			.button {
+				background-color: #555555;
+				border: none;
+				color: white;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				margin: 4px 2px;
+				cursor: pointer;
+			}
+			
+			.button1 {
+				font-size: 10px;
+			}
+			
+			.button2 {
+				font-size: 12px;
+			}
+			
+			.button3 {
+				font-size: 13px;
+			}
+			
+			.button4 {
+				font-size: 20px;
+			}
+			
+			.button5 {
+				font-size: 24px;
+			}
+			
+        </style>
+    </head>
+
+    <body BGCOLOR="DCDCDC" onload="PolygonInsideCircle()">
+		<div id = "maindiv">
+			<header>
+                <h1>APPROXIMATING OBJECTS WITH POLYGONS</h1>
+            </header>
+			
+			<div style="float:left;">
+				
+				<canvas id="Drawing_area" width="300" height="300"></canvas>
+				<script src="./js/3-cakes-tested.js"></script>
+
+			</div>
+
+			<div id="TextArea" style="float:right; width:51.00%;">
+				<ul>
+					<h3>Tolerance:</h3>
+					<h3>Epsilon = radius of the cricle - distance of the mid-point of the edge of the polygon from the center of the circle.</h3>
+					<!--Interactive slider for setting the number of sides-->
+					<h4>Enter the number of vertices (3-15) : <input id="vertices" type="range" name="vertices" min="3" value="6" max="15" step=1 onclick="ChangeSliderValue(value)"><output for="vertices" id="numVertex">6</output></h4>
+					<h4>Enter the radius : <input id="radius" type="number" type="text" name="radius" value="100"></h4>
+					<button onclick="PolygonInsideCircle()" class="button button3">DRAW</button>
+					<!--<button id="drawPolygon" name="drawPolygon" onclick="PolygonInsideCircle()">Draw Polygon</button>-->
+					<input onclick="ClearDrawing()" class="button button2" type="button" value="CLEAR" >
+					<h4>Tolerance is: <b id="result"></b></h4>
+					<p><i>Drawing Canvas area : 300*300 pixels</i></font></p>
+				</ul>	
+			</div>
+		</div>
+	</body>
+
+<script>
+	function ClearDrawing() 
+    {
+    	location.reload(true); //refresh the browser page
+    }
+</script>
+    
+</html>

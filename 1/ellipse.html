@@ -1,0 +1,260 @@
+<html>
+
+<head>
+    <title>ellipse (2D)</title>
+    <style>
+        header,
+        footer {
+            padding: 1em;
+            color: white;
+            background-color: black;
+            clear: left;
+            text-align: center;
+        }
+        
+        .link {
+            color: white;
+            text-decoration: none;
+            background-color: none;
+        }
+        
+        leftarea {
+            float: left;
+            max-width: 900px;
+            margin: 0;
+            padding: 1em;
+        }
+        
+        leftarea ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        leftarea ul a {
+            text-decoration: none;
+        }
+        
+        article {
+            border-left: 1px solid gray;
+            padding: 1em;
+            overflow: hidden;
+        }
+        
+        <!--Comment: To change the color of the e-Mail link --> a:link {
+            color: green;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: red;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        
+        a:active {
+            color: yellow;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        
+        .button {
+            background-color: #555555;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        
+        .button1 {
+            font-size: 10px;
+        }
+        
+        .button2 {
+            font-size: 12px;
+        }
+        
+        .button3 {
+            font-size: 13px;
+        }
+        
+        .button4 {
+            font-size: 20px;
+        }
+        
+        .button5 {
+            font-size: 24px;
+        }
+        
+        .clearfix:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+        
+        .clearfix {
+            display: inline-block;
+        }
+        /* start commented backslash hack \*/
+        
+        * html .clearfix {
+            height: 1%;
+        }
+        
+        .clearfix {
+            display: block;
+        }
+        
+        .fLeft {
+            float: left;
+        }
+        
+        .fRight {
+            float: right;
+        }
+    </style>
+</head>
+
+<body BGCOLOR="DCDCDC">
+    <div class="container clearfix">
+
+        <header>
+            <h1>Draw an Ellipse</h1>
+        </header>
+
+        <leftarea class="fLeft">
+            <ul>
+                <h3>
+                    <u>Fill in the values below:</u>
+                </h3>
+                <h3><input id="X0"> - x</input>
+                </h3>
+                <h3><input id="Y0"> - y</input>
+                </h3>
+                <h3><input id="A"> - A</input>
+                </h3>
+                <h3><input id="B"> - B</input>
+                </h3>
+
+
+                <button onClick="AcceptUserInput()" id="DrawBTN" class="button button3">DRAW</button><br>
+                <input type="button" value="CLEAR" id="clear" class="button button2" onclick="ClearDrawing()" />
+                <br>
+                <hr>
+                <h4>Canvas drawaing area: 500*406 pixels</h4>
+            </ul>
+        </leftarea>
+
+        <article class="fRight">
+            <canvas id="drawArea" width="500" height="406" style="border:3px solid black;">
+                Your browser does not support the HTML5 canvas tag.</canvas>
+        </article>
+
+        <script>
+        var canvas = document.getElementById("drawArea");
+        var objcntx = canvas.getContext("2d");
+        var canvasData = objcntx.getImageData(0, 0, canvas.width, canvas.height);
+
+        function ClearDrawing() 
+        {
+            objcntx.clearRect(0, 0, canvas.width, canvas.height); //clears the whole canvas area
+            X0.value = ''; Y0.value = ''; A.value = ''; B.value = ''; //sets the  input values to null
+            location.reload(true);
+        }
+
+        function AcceptUserInput() 
+        {
+            var x0 = parseInt(document.getElementById("X0").value);
+            var y0 = parseInt(document.getElementById("Y0").value);
+            var A = parseInt(document.getElementById("A").value);
+            var B = parseInt(document.getElementById("B").value);
+
+            var X = A;
+            var Y = 0;
+            var err = 0;
+
+            var ASq = A * A;
+            var BSq = B * B;
+            var twoBSq = 2 * BSq;
+            var twoASq = 2 * ASq;
+            var ABSq = ASq * BSq;
+            var BSqXSq = BSq * X * X;
+            var stoppingX = twoBSq * X;
+            var stoppingY = 0;
+
+            while (stoppingX >= stoppingY) 
+            {
+                drawPixel(X + x0, Y + y0, 107, 14, 42, 255);
+                drawPixel(-X + x0, Y + y0, 107, 14, 42, 255);
+                drawPixel(-X + x0, -Y + y0, 107, 14, 42, 255);
+                drawPixel(X + x0, -Y + y0,107, 14, 42, 255);
+                Y++;
+                stoppingY += twoASq;
+                err = BSqXSq + ASq * Y * Y - ABSq + stoppingY + ASq;
+                
+                if (2 * err + BSq - stoppingX > 0) 
+                {
+                    X--;
+                    stoppingX -= twoBSq;
+                    BSqXSq = BSq * X * X;
+                }
+            }
+
+            X = 0;
+            Y = B;
+            err = 0;
+            var ASqYSq = ASq * Y * Y;
+            var stoppingX = 0;
+            var stoppingY = twoASq * Y;
+
+            while (stoppingY > stoppingX) 
+            {
+                drawPixel(X + x0, Y + y0, 107, 14, 42, 255);
+                drawPixel(-X + x0, Y + y0, 107, 14, 42, 255);
+                drawPixel(-X + x0, -Y + y0, 107, 14, 42, 255);
+                drawPixel(X + x0, -Y + y0, 107, 14, 42, 255);
+                X++;
+                stoppingX += twoBSq;
+                err = ASqYSq + BSq * X * X - ABSq + stoppingY + ASq;
+                if (2 * err + BSq - stoppingX > 0) 
+                {
+                    Y--;
+                    stoppingY -= twoASq;
+                    ASqYSq = ASq * Y * Y;
+                }
+            }
+            objcntx.putImageData(canvasData, 0, 0);
+        }
+
+        function drawPixel(x, y, r, g, b, a) 
+        {
+            var indx = (x + y * canvas.width) * 4;
+            canvasData.data[indx + 0] = r;
+            canvasData.data[indx + 1] = g;
+            canvasData.data[indx + 2] = b;
+            canvasData.data[indx + 3] = a;
+
+        }
+
+        </script>
+    </div>
+
+    <div>
+        <footer>
+            <a href="index.html">
+                <div class="link">
+                    <p1>Main Menu</p1>
+                </div>
+            </a>
+        </footer>
+    </div>
+</body>
+
+</html>

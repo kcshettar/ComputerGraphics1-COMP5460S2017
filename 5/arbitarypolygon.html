@@ -1,0 +1,176 @@
+<html>
+    
+    <head><title>Question 1</title>
+        <style>
+            <!-- Comment: For the design -->
+            div.container {
+                width: 100%;
+                border: 1px solid gray;
+            }
+
+            header, footer {
+                padding: 1em;
+                color: white;
+                background-color: black;
+                clear: left;
+                text-align: center;
+            }
+
+            .link
+            {
+            color:white;
+            text-decoration: none; 
+            background-color: none;
+            }
+
+            naviagate {
+                float: left;
+                max-width: 160px;
+                margin: 0;
+                padding: 1em;
+            }
+
+            naviagate ul {
+                list-style-type: none;
+                padding: 0;
+            }
+                        
+            naviagate ul a {
+                text-decoration: none;
+            }
+
+            article {
+                margin-left: 500px;
+                overflow: hidden;
+            }
+
+            <!--Comment: To change the color of the e-Mail link 
+            -->
+            a:link {
+                color: green;
+                background-color: transparent;
+                text-decoration: none;
+            }
+
+            a:hover {
+                color: red;
+                background-color: transparent;
+                text-decoration: underline;
+            }
+
+            a:active {
+                color: yellow;
+                background-color: transparent;
+                text-decoration: underline;
+            }
+
+            .clearfix:after {
+                visibility: hidden;
+                display: block;
+                font-size: 0;
+                content: " ";
+                clear: both;
+                height: 0;
+            }
+
+            .clearfix {
+                display: inline-block;
+            }
+            /* start commented backslash hack \*/
+
+            * html .clearfix {
+                height: 1%;
+            }
+
+            .clearfix {
+                display: block;
+            }
+
+            .fLeft {
+                float: left;
+            }
+
+            .fRight {
+                float: right;
+            }
+			
+			.button {
+				background-color: #555555;
+				border: none;
+				color: white;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				margin: 4px 2px;
+				cursor: pointer;
+			}
+			
+			.button1 {
+				font-size: 10px;
+			}
+			
+			.button2 {
+				font-size: 12px;
+			}
+			
+			.button3 {
+				font-size: 13px;
+			}
+			
+			.button4 {
+				font-size: 20px;
+			}
+			
+			.button5 {
+				font-size: 24px;
+			}
+			
+        </style>
+    </head>
+
+
+    <body BGCOLOR="DCDCDC">
+		<div id = "maindiv">
+			<header>
+                <h1>ARBITARY (GENERAL) POLYGONS</h1>
+            </header>
+			
+			<div style="float:left;">
+			
+				<script type="text/javascript" src="./js/Three.js"></script>
+				<script type="text/javascript" src="./js/jquery.min.js"></script>
+				<script type="text/javascript" src="./js/OrbitControls.js"></script>
+				<script type="text/javascript" src="./js/arbitarypolygon.js"></script>
+			
+			</div>
+
+			<div id="TextArea" style="float:right; width:51.00%;">
+				<ul>
+					<h3>Enter Number of sides for Polygon: <input type="number" id = "polySides" min="1" max="500" value="6"> (<500)</h3><h3>
+					<h3>Enter Radius from the center: <input type="number" id = "polyLength" min="1" max="200" value="30"> (<200)<h3>
+					<h3>Enter Height : <input type="number" id = "polyHeight" min="1" max="500" value="150"> (<500)<h3>
+					<h4>Mouse Features:<br>1. Zoom in/Zoom out with scroll<br>2. Drag the item by clicking</h4>
+					
+					<button onclick="modelPrism()" "alert('Success')" value="Draw prism model" class="button button3">DRAW</button>
+					<input type="button" value="CLEAR" id="clear" class="button button2" onclick="ClearDrawing()"/>
+				</ul>	
+			</div>
+		</div>
+	</body>
+	
+
+	
+<script>
+    $(document).ready(function(){
+        init(geometry);
+        animate();
+    });
+
+    function ClearDrawing() 
+        {
+            location.reload(true); //refresh the browser page
+        }
+</script>
+    
+</html>
